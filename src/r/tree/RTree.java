@@ -6,7 +6,7 @@ public class RTree {
     public int height;
     public int quantity;
 
-    public RTree(int quantity) {
+    public void RTree(int quantity) {
         this.quantity = quantity;
     }
 
@@ -14,10 +14,6 @@ public class RTree {
     public void addFirst(Rectangle rect) {
         this.root = new RTreeNode(rect);
     }
-
-    private RTreeNode root;
-    private int height = 0;
-    private int quantity;
 
 
     public RTree(int quantity) {
@@ -56,7 +52,7 @@ public class RTree {
                 }
             }
         }
-//return node;
+        return node;
     }
 
     private void splitRoot() {
