@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BoundaryBox implements BasicRectangle {
     private List<Rectangle> values;
-    private double weight;
+    private double centre;
     public int maxEntries;
     private int entries = 0;
     private int xTop;
@@ -26,13 +26,13 @@ public class BoundaryBox implements BasicRectangle {
         this.yTop = value.yTop;
         this.xBottom = value.xBottom;
         this.yBottom = value.yBottom;
-        this.weight = RecMath.centre(this.xTop, this.xBottom); //вычесляем центр
+        this.centre = RecMath.findCentre(this.xTop, this.xBottom); //вычесляем центр
     }
 
 
 
     public BoundaryBox splitRoot(Rectangle rectangle){ //дробление объекта, возвращает новый объект с вложенным бОльшим прямоугольником
-        if(RecMath.howMachDistance(this.weight, rectangle.weight, values.get(values.size()-1).weight)){
+        if(RecMath.howMachDistance(this.centre, rectangle.centre, values.get(values.size()-1).centre)){
             return new BoundaryBox(rectangle, maxEntries);
         }
         else{
@@ -52,7 +52,7 @@ public class BoundaryBox implements BasicRectangle {
             this.yTop = this.yTop < value.yTop? value.yTop:this.yTop;
             this.xBottom = this.xBottom < value.xBottom? value.xBottom:this.xBottom;
             this.yBottom = this.yBottom < value.yBottom? value.yBottom:this.yBottom;
-            if(!RecMath.howMachDistance(this.weight, value.weight, values.get(values.size() - 2).weight)){ // Если требуется сортировка
+            if(!RecMath.howMachDistance(this.centre, value.centre, values.get(values.size() - 2).centre)){ // Если требуется сортировка
                 BubbleSort.sort(values, RecMath.comparatorRec);
             }
             return null;

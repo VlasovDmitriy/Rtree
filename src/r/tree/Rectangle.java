@@ -12,14 +12,14 @@ public  int xBottom;
 public  int yBottom;
 //public Rectangle next;
 public RTreeNode infant;
-public double weight;
+public double centre;
 
     public Rectangle(int xTop, int yTop, int xBottom, int yBottom) {
         this.xTop = xTop;
         this.yTop = yTop;
         this.xBottom = xBottom;
         this.yBottom = yBottom;
-        weight = RecMath.centre(xBottom, xTop);
+        centre = RecMath.findCentre(xBottom, xTop);
     }
 
     @Override
@@ -27,17 +27,17 @@ public double weight;
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rectangle rectangle = (Rectangle) o;
-        return Double.compare(rectangle.weight, weight) == 0;
+        return Double.compare(rectangle.centre, centre) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(weight);
+        return Objects.hash(centre);
     }
 
     //для тестов
     @Override
     public String toString() {
-        return new String("" + weight);
+        return new String("" + centre);
     }
 }
